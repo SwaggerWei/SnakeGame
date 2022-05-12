@@ -73,6 +73,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         g.fillRect(25, 75, 850, 600);
 
         // 2 画一条静态的小蛇
+        // 画蛇头
         if (direction.equals("R")){
             Data.right.paintIcon(this, g, snakeX[0], snakeY[0]);
         }else if (direction.equals("L")){
@@ -83,12 +84,28 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             Data.down.paintIcon(this, g, snakeX[0], snakeY[0]);
         }
 
+        // 画蛇身体
+
         for (int i = 1; i < length; i++) {
             // 蛇的身体长度，通过length 参数来控制
-            Data.body.paintIcon(this, g, snakeX[i], snakeY[i]);
+            Data.body1.paintIcon(this, g, snakeX[i], snakeY[i]);
         }
 
+//        if (direction.equals("R") || direction.equals("L")){
+//            for (int i = 1; i < length; i++) {
+//                // 蛇的身体长度，通过length 参数来控制
+//                Data.body1.paintIcon(this, g, snakeX[i], snakeY[i]);
+//            }
+//        }else {
+//            for (int i = 1; i < length; i++) {
+//                // 蛇的身体长度，通过length 参数来控制
+//                Data.body2.paintIcon(this, g, snakeX[i], snakeY[i]);
+//            }
+//        }
+
+
         String font = "微软雅黑"; // 字体类型
+
         // 3 画积分
         g.setColor(Color.WHITE); // 设置画笔的颜色
         g.setFont(new Font(font, Font.BOLD, 18));
