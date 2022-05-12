@@ -51,8 +51,26 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
         snakeX[1] = 75; snakeY[1] = 100; // 第一节身体坐标
         snakeX[2] = 50; snakeY[2] = 100; // 蛇头坐标
 
-        foodx = 25 + 25 * random.nextInt(34);
-        foody = 75 + 25 * random.nextInt(24);
+        boolean isFoodCoveredByBody = false;
+        while (true){
+            // 重新生成食物坐标
+            foodx = 25 + 25 * random.nextInt(34);
+            foody = 75 + 25 * random.nextInt(24);
+            for (int i = 0; i < length; i++) {
+                if (foodx == snakeX[i] && foody == snakeY[i]){
+                    isFoodCoveredByBody = true;
+                }
+            }
+            if (isFoodCoveredByBody  == true){
+                continue;
+            }else {
+                break;
+            }
+        }
+
+
+//        foodx = 25 + 25 * random.nextInt(34);
+//        foody = 75 + 25 * random.nextInt(24);
 
         score = 0;
     }
@@ -90,18 +108,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
             // 蛇的身体长度，通过length 参数来控制
             Data.body1.paintIcon(this, g, snakeX[i], snakeY[i]);
         }
-
-//        if (direction.equals("R") || direction.equals("L")){
-//            for (int i = 1; i < length; i++) {
-//                // 蛇的身体长度，通过length 参数来控制
-//                Data.body1.paintIcon(this, g, snakeX[i], snakeY[i]);
-//            }
-//        }else {
-//            for (int i = 1; i < length; i++) {
-//                // 蛇的身体长度，通过length 参数来控制
-//                Data.body2.paintIcon(this, g, snakeX[i], snakeY[i]);
-//            }
-//        }
 
 
         String font = "微软雅黑"; // 字体类型
@@ -222,8 +228,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                 }
 
 
-
-
             }
 
             // 失败判断
@@ -232,9 +236,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener{
                     isFail = true;
                 }
             }
-
-
-
 
 
             // 刷新界面
